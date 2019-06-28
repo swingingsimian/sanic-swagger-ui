@@ -2,7 +2,7 @@ There are a whole host of sanic swagger projects out there:
 
  - https://github.com/huge-success/sanic-openapi From author of sanic
  - https://github.com/abatilo/sanic-swagger A fork of the above with added c/attrs support
- - https://github.com/yunstanford/sanic-transmute From the author of pytest-sanic amongst many other thing
+ - https://github.com/yunstanford/sanic-transmute From the author of pytest-sanic amongst many other things
 
 None of which as far as I can tell support OpenAPI spec 3.0, although I think sanic-transmute does partially. All of which seem to be focussed on dynamic documentation, rather than simply rendering a swagger json as per flask-swagger-ui. 
 
