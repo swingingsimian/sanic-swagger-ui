@@ -1,3 +1,11 @@
+There are a whole host of sanic swagger projects out there, all of which seems to be focussed on dynamic documentation, rather than simply rendering a swagger json as per flask-swagger-ui.
+
+This is very much a work in progress.
+
+TODO:
+Conver flask_swagger_ui.py to use app.static instead of send_from_directory and use jinja2 templating directly
+
+
 # flask-swagger-ui
 
 Simple Flask blueprint for adding [Swagger UI](https://github.com/swagger-api/swagger-ui) to your flask application.
