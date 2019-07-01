@@ -9,6 +9,9 @@ There are a whole host of sanic swagger projects out there:
 
 None of which as far as I can tell support OpenAPI spec 3.0, although I think sanic-transmute does partially. All of which seem to be focussed on dynamic documentation, rather than simply rendering a swagger json as per flask-swagger-ui. 
 
+Or just use this directly?
+- https://github.com/swagger-api/swagger-ui
+
 
 TODO:
 Conver flask_swagger_ui.py to use app.static instead of send_from_directory and use jinja2 templating directly
