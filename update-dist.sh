@@ -3,6 +3,8 @@
 RELEASE=$(curl -s https://api.github.com/repos/swagger-api/swagger-ui/releases/latest | grep tag_name | cut -d '"' -f 4)
 echo "Downloading release ${RELEASE}"
 
+# pushd not available on macos change to cd and cd -?
+
 pushd flask_swagger_ui/dist > /dev/null
 
 OUTPUT_FILE=${RELEASE}.tar.gz

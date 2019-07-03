@@ -7,35 +7,38 @@ There are a whole host of sanic swagger projects out there:
  - https://github.com/abatilo/sanic-swagger A fork of the above with added c/attrs support
  - https://github.com/yunstanford/sanic-transmute From the author of pytest-sanic amongst many other things
 
-None of which as far as I can tell support OpenAPI spec 3.0, although I think sanic-transmute does partially. All of which seem to be focussed on dynamic documentation, rather than simply rendering a swagger json as per flask-swagger-ui. 
+All of which seem to be focussed on dynamic documentation, but as far as I can tell don't support OpenAPI spec 3.0,
+although I think sanic-transmute does partially.
 
-Or just use this directly?
-- https://github.com/swagger-api/swagger-ui
+This fork attempts of https://github.com/sveint/flask-swagger-ui attempts to simply render a static swagger.json file.
+
+The upstream is a couple of minor versions behind https://github.com/swagger-api/swagger-ui, but I think good enough for
+government work as supports OpenAPI 3.0.
+
+TODO
+- oAuth support
+- Packaging/Distribution
 
 
-TODO:
-Conver flask_swagger_ui.py to use app.static instead of send_from_directory and use jinja2 templating directly
+# sanic-swagger-ui
 
-
-# flask-swagger-ui
-
-Simple Flask blueprint for adding [Swagger UI](https://github.com/swagger-api/swagger-ui) to your flask application.
+Simple Sanic blueprint for adding [Swagger UI](https://github.com/swagger-api/swagger-ui) to your Sanic application.
 
 Included Swagger UI version: 3.20.9.
 
 ## Installation
 
-`pip install flask-swagger-ui`
+#`pip install sanic-swagger-ui`
 
 ## Usage
 
 Example application:
 
 ```python
-from flask import Flask
-from flask_swagger_ui import get_swaggerui_blueprint
+from sanic import Sanic
+from sanic_swagger_ui import get_swaggerui_blueprint
 
-app = Flask(__name__)
+app = Sanic(__name__)
 
 
 SWAGGER_URL = '/api/docs'  # URL for exposing Swagger UI (without trailing '/')
@@ -48,6 +51,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     config={  # Swagger UI config overrides
         'app_name': "Test application"
     },
+    # oAuth NOT YET SUPPORTED IN THIS FORK
     # oauth_config={  # OAuth config. See https://github.com/swagger-api/swagger-ui#oauth2-configuration .
     #    'clientId': "your-client-id",
     #    'clientSecret': "your-client-secret-if-required",
@@ -60,11 +64,11 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 # Register blueprint at URL
 # (URL must match the one given to factory function above)
-app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
+app.blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 app.run()
 
-# Now point your browser to localhost:5000/api/docs/
+# Now point your browser to localhost:8000/api/docs/
 
 ```
 
@@ -75,4 +79,4 @@ See https://github.com/swagger-api/swagger-ui#parameters for options.
 
 Plugins and function parameters are not supported at this time.
 
-OAuth2 parameters can be found at https://github.com/swagger-api/swagger-ui#oauth2-configuration .
+<!-- Auth2 parameters can be found at https://github.com/swagger-api/swagger-ui#oauth2-configuration . -->
